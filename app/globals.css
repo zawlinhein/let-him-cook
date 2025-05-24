@@ -2,20 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Theme Colors */
+    --background: 42 100% 97%; /* #FFF8F0 - Cream */
+    --foreground: 0 0% 18%; /* #2D2D2D - Main text */
+
+    --primary: 27 95% 47%; /* #E85D04 - Warm Orange */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --secondary: 90 100% 44%; /* #70E000 - Fresh Green */
+    --secondary-foreground: 0 0% 18%; /* #2D2D2D */
+
+    --accent: 45 94% 63%; /* #F9C74F - Corn Yellow */
+    --accent-foreground: 0 0% 18%; /* #2D2D2D */
+
+    --surface: 0 0% 100%; /* #FFFFFF - white cards */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+
+    --border: 0 0% 85%; /* Light gray border */
+    --input: 0 0% 95%; /* Light input background */
+    --ring: 27 95% 47%; /* Use primary for ring color */
+
+    --muted: 210 16% 93%; /* light gray background */
+    --muted-foreground: 210 10% 40%; /* #6C757D - Text Secondary */
+
+    --destructive: 0 100% 41%; /* #D00000 - error color */
+    --destructive-foreground: 0 0% 100%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 210 40% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
