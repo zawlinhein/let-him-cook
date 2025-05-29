@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { auth, signIn, signOut } from "@/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import Link from "next/link";
 
 const NavBar = async () => {
   const session = await auth();
@@ -11,14 +12,16 @@ const NavBar = async () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Title */}
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <ChefHat className="w-6 h-6 text-white" />
+          <Link href={"/"}>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                <ChefHat className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-text-main">
+                Let Him Cook
+              </h1>
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold text-text-main">
-              Let Him Cook
-            </h1>
-          </div>
+          </Link>
 
           {/* Navigation Actions - Show icons only on mobile, full buttons on desktop */}
           <div className="flex items-center space-x-2 sm:space-x-4">
