@@ -1,5 +1,9 @@
+import { RecipeType } from "@/components/RecipeCard";
 import RecipeFilter from "@/components/RecipeFilter";
 import SearchBar from "@/components/SearchBar";
+import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
+import { RECIPE_SEARCH } from "@/sanity/lib/query";
 
 export default async function Home({
   searchParams,
@@ -8,6 +12,14 @@ export default async function Home({
 }) {
   const searchQuery = (await searchParams).query;
 
+  /* const { data: recipes }: { data: Recipe } = await sanityFetch({
+    query: RECIPE_SEARCH,
+    params: { search: searchQuery || null },
+  }); */
+  //have to add null
+  const recipes: RecipeType[] = await client.fetch(RECIPE_SEARCH, {
+    search: searchQuery || null,
+  });
   return (
     <>
       <section className="py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
@@ -23,7 +35,7 @@ export default async function Home({
           <SearchBar searchQuery={searchQuery} />
         </div>
       </section>
-      <RecipeFilter />
+      <RecipeFilter recipes={recipes} />
     </>
   );
 }

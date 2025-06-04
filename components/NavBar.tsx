@@ -27,10 +27,12 @@ const NavBar = async () => {
           <div className="flex items-center space-x-2 sm:space-x-4">
             {session && session?.user ? (
               <>
-                <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl px-3 sm:px-6">
-                  <Plus className="w-4 h-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Create</span>
-                </Button>
+                <Link href={"/recipe/create"}>
+                  <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl px-3 sm:px-6">
+                    <Plus className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Create</span>
+                  </Button>
+                </Link>
                 <Button
                   variant="outline"
                   onClick={async () => {
@@ -42,12 +44,14 @@ const NavBar = async () => {
                   <LogOut className="w-4 h-4 sm:mr-2" />
                   <span className="hidden sm:inline">Logout</span>
                 </Button>
-                <Avatar className="w-10 h-10">
-                  <AvatarImage src={session.user.image!} />
-                  <AvatarFallback className="bg-accent text-text-main">
-                    <img src={"https://placehold.co/48x48/png"} />
-                  </AvatarFallback>
-                </Avatar>
+                <Link href={`/profile/${session.id}`}>
+                  <Avatar className="w-10 h-10">
+                    <AvatarImage src={session.user.image!} />
+                    <AvatarFallback className="bg-accent text-text-main">
+                      <img src={"https://placehold.co/48x48/png"} />
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
               </>
             ) : (
               <Button

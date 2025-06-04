@@ -10,11 +10,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, profile, account }) {
       const existingUser = await client
         .withConfig({ useCdn: false })
-        .fetch(AUTHOR_BY_GOOGLE_ID, { id: user.id });
+        .fetch(AUTHOR_BY_GOOGLE_ID, { id: profile?.sub });
       if (!existingUser) {
         await writeClient.create({
           _type: "author",
-          id: user.id,
+          id: profile?.sub,
           name: user.name,
           image: user.image,
           email: user.email,
@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user && profile) {
         const existingUser = await client
           .withConfig({ useCdn: false })
-          .fetch(AUTHOR_BY_GOOGLE_ID, { id: user.id });
+          .fetch(AUTHOR_BY_GOOGLE_ID, { id: profile.sub });
         token.id = existingUser._id;
       }
       return token;
